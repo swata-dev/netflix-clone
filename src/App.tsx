@@ -1,6 +1,7 @@
 import './App.css';
 import { requests } from './request';
 import { Row } from './components/Row';
+import "./App.css";
 
 function App() {
   return (
