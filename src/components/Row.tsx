@@ -1,4 +1,5 @@
-import React from 'react'
+import { useState, useEffect } from 'react';
+import axios from './../axios';
 
 type Props = {
   title: string;
@@ -6,10 +7,31 @@ type Props = {
   isLargeRow?: boolean;
 };
 
-export const Row = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+type Movie = {
+  id: string;
+  name: string;
+  title: string;
+  original_name: string;
+  poster_path: string;
+  backdrop_path: string;
 }
+
+export const Row = ({ title, fetchUrl }: Props) => {
+  // set blank array as a default value
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(fetchUrl);
+      setMovies(request.data.results);
+      return request;
+    }
+    fetchData();
+  }, [fetchUrl]);
+
+  console.log(movies);
+
+  return (
+    <div className='Row' />
+  );
+};
