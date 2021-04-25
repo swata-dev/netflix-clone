@@ -5,3 +5,14 @@ import axios from "./../axios";
 import { requests } from "./../request";
 // import "./Banner.scss";
 
+type Props = {
+  title?: string;
+  name?: string;
+  original_name?: string;
+  backdrop_path?: string;
+  overview?: string;
+}
+
+export const Banner = () => {
+  const [movie, setMovie] = useState<Props>({});
+}
