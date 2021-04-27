@@ -15,4 +15,20 @@ type Props = {
 
 export const Banner = () => {
   const [movie, setMovie] = useState<Props>({});
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(requests.fetchNetflixOriginals);
+      console.log(request.data.result);
+
+      //apiからランダムで値を取得している
+      setMovie(
+        request.data.results[
+          Math.floor(Math.random() * request.data.results.length - 1)
+        ]
+      );
+      return request;
+    }
+    fetchData();
+  }, []);
+  console.log(movie);
 }
